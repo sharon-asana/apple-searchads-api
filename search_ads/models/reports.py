@@ -22,7 +22,8 @@ def get_campaign_adgroups_report(campaign,
                                  selector=None,
                                  group_by=[],
                                  return_records_with_no_metrics=True,
-                                 return_row_totals=False):
+                                 return_row_totals=False,
+								 api_version='v2'):
     return _report(
         campaign,
         path='adgroups',
@@ -34,7 +35,8 @@ def get_campaign_adgroups_report(campaign,
         selector=selector,
         group_by=group_by,
         return_records_with_no_metrics=return_records_with_no_metrics,
-        return_row_totals=return_row_totals
+        return_row_totals=return_row_totals,
+		api_version=api_version
     )
 
 
@@ -47,7 +49,8 @@ def get_campaign_searchterms_report(campaign,
                                     selector=None,
                                     group_by=[],
                                     return_records_with_no_metrics=True,
-                                    return_row_totals=False):
+                                    return_row_totals=False,
+                                    api_version='v2'):
     return _report(
         campaign,
         path='searchterms',
@@ -59,7 +62,8 @@ def get_campaign_searchterms_report(campaign,
         selector=selector,
         group_by=group_by,
         return_records_with_no_metrics=return_records_with_no_metrics,
-        return_row_totals=return_row_totals
+        return_row_totals=return_row_totals,
+        api_version=api_version
     )
 
 
@@ -72,7 +76,8 @@ def get_campaign_keywords_report(campaign,
                                  selector=None,
                                  group_by=[],
                                  return_records_with_no_metrics=True,
-                                 return_row_totals=False):
+                                 return_row_totals=False,
+                                 api_version='v2'):
     return _report(
         campaign,
         path='keywords',
@@ -84,7 +89,8 @@ def get_campaign_keywords_report(campaign,
         selector=selector,
         group_by=group_by,
         return_records_with_no_metrics=return_records_with_no_metrics,
-        return_row_totals=return_row_totals
+        return_row_totals=return_row_totals,
+        api_version=api_version
     )
 
 
@@ -96,7 +102,8 @@ def get_campaign_report(org_id=None,
                         selector=None,
                         group_by=[],
                         return_records_with_no_metrics=True,
-                        return_row_totals=False):
+                        return_row_totals=False,
+						api_version='v2'):
     return _report(
         path='',
         org_id=org_id,
@@ -107,7 +114,8 @@ def get_campaign_report(org_id=None,
         selector=selector,
         group_by=group_by,
         return_records_with_no_metrics=return_records_with_no_metrics,
-        return_row_totals=return_row_totals
+        return_row_totals=return_row_totals,
+		api_version=api_version
     )
 
 
@@ -121,7 +129,8 @@ def _report(campaign=None,
             selector=None,
             group_by=[],
             return_records_with_no_metrics=True,
-            return_row_totals=False):
+            return_row_totals=False,
+            api_version='v2'):
     if not selector:
         selector = {
             "orderBy": [
@@ -146,7 +155,7 @@ def _report(campaign=None,
     else:
         url = "reports/campaigns"
     output = []
-    api_res = api_post(url, org_id=org_id, data=data)
+    api_res = api_post(url, org_id=org_id, data=data,api_version=api_version)
     try:
         res = api_res['data']['reportingDataResponse']['row']
     except:

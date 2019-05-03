@@ -26,7 +26,7 @@ class DataBase(object):
 
 
 class SearchAds(object):
-    def __init__(self, org_name, api_version='v1'):
+    def __init__(self, org_name, api_version='v2'):
         """
         Initialize the API object
         :param org_name: Your organization name as found in the SearchAds interface
@@ -162,7 +162,8 @@ class SearchAds(object):
                                      selector=None,
                                      group_by=[],
                                      return_records_with_no_metrics=True,
-                                     return_row_totals=False):
+                                     return_row_totals=False,
+                                     api_version='v2'):
         """
         Retrieve a Campaign All Keyword report from Apple and returns it as a Pandas DataFrame
         :param campaign: a Campaign object
@@ -186,7 +187,8 @@ class SearchAds(object):
             selector=selector,
             group_by=group_by,
             return_records_with_no_metrics=return_records_with_no_metrics,
-            return_row_totals=return_row_totals
+            return_row_totals=return_row_totals,
+            api_version=api_version
         )
 
     def get_campaign_searchterms_report(self,
@@ -198,7 +200,8 @@ class SearchAds(object):
                                         selector=None,
                                         group_by=[],
                                         return_records_with_no_metrics=True,
-                                        return_row_totals=False):
+                                        return_row_totals=False,
+                                        api_version='v2'):
         """
         Retrieve a Campaign Search Terms report from Apple and returns it as a Pandas DataFrame
         :param campaign: a Campaign object
@@ -222,7 +225,8 @@ class SearchAds(object):
             selector=selector,
             group_by=group_by,
             return_records_with_no_metrics=return_records_with_no_metrics,
-            return_row_totals=return_row_totals
+            return_row_totals=return_row_totals,
+            api_version=api_version
         )
 
     def get_campaign_adgroups_report(self,
